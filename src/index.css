@@ -1,0 +1,785 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.zen-dots-regular {
+  font-family: "Zen Dots", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+
+  background: linear-gradient(41deg, #0c0b11 50%, #1a173e 100%);
+  position: relative;
+  z-index: -3;
+
+}
+
+/* Estilos básicos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+
+.bodyFixed {
+
+  position: fixed;
+
+}
+
+.loader {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+#background-poster-100vh {
+
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  filter: brightness(0.099);
+  background: linear-gradient(41deg, #0c0b11 45%, #1a173e 100%)
+}
+
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
+  background-size: cover; /* Escala el fondo correctamente */
+  background-position: center; /* Centra la imagen del fondo */
+  background-repeat: no-repeat; /* Evita que se repita */
+  z-index: 1;
+}
+
+
+.homeIcon{
+  fill: rgb(133 130 130 / 35%);
+}
+
+.posterDetails {
+
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 3), rgba(0, 0, 0, 0.4));
+  width: 100%;
+  text-align: center;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.backdropDetails {
+
+
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh; /* Asegura que el fondo y el contenido estén alineados */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6));
+    padding-top: 1%; /* Asegura algo de espacio desde la parte superior */
+    box-sizing: border-box; /* Para que el padding no rompa el layout */
+  
+
+}
+
+.arrowBack {
+
+  fill: rgb(133 130 130 / 90%);
+  height: 54px;
+  width: 54px;
+  border-radius: 16px;
+  margin-left: 3%;
+  margin-top: 3%;
+}
+
+.arrowBack:hover {
+  cursor: pointer;
+  background-color: rgba(60, 65, 67, 0.6);
+  transition: all ease-in-out 0.2s;
+  fill: rgb(254, 254, 254);
+}
+
+.arrowBackSectionMovies {
+
+  fill: rgb(133 130 130 / 90%);
+  height: 54px;
+  width: 54px;
+  border-radius: 16px;
+  margin-top: 4%;
+  position: absolute;
+  left: 7%;
+
+}
+
+.arrowBackSectionMovies:hover {
+  cursor: pointer;
+  background-color: rgba(60, 65, 67, 0.6);
+  transition: all ease-in-out 0.2s;
+  fill: rgb(254, 254, 254);
+}
+
+.divGenres {
+
+  display: flex;
+  color: white;
+
+}
+
+.divDetails {
+
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+.dropdown-button {
+  color: #a1a1a1;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.dropdown-button:hover {
+  background-color: rgb(60 65 67 / 54%);
+  border-radius: 11px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 126%;
+  left: -10px;
+  border: 1px solid #ccc;
+  border-radius: 22px;
+  padding: 8px 0;
+  z-index: 10;
+  min-width: 100px;
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background-color: rgb(60 65 67 / 54%);
+}
+
+.textGenres {
+
+  background-color: rgb(157 157 157 / 18%);
+  padding: 8.6px 20px;
+  border-radius: 32px;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+  margin-right: 10px;
+  margin-left: 10px;
+
+}
+
+.textGenres:hover {
+
+  background-color: rgba(122, 124, 125, 0.5);
+  transition: all ease-in-out 0.2s;
+
+}
+
+
+.posterTitle {
+  color: white;
+  margin: 11% 0 0 0%;
+  font-family: "Zen Dots", serif;
+  font-size: 38px;
+  text-align: center;
+
+}
+
+.posterReleaseDate {
+  color: white;
+  margin: 10% 0px 6% 0%;
+  font-family: cursive;
+
+}
+
+.posterFeaturesTitle {
+  color: white;
+  margin: 4% 0px 7% 0%;
+  font-size: 23px;
+  font-family: cursive;
+  
+}
+
+.posterOverview {
+
+  color: white;
+  margin: 12% 0 0 0%;
+  font-size: 16.5px;
+  font-family: auto;
+  letter-spacing: 3px;
+  margin-left: 11%;
+
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 2%;
+}
+
+.nav {
+  display: flex;
+  margin-top: 7%;
+  justify-content: left;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 23%;
+  border: none;
+  border-radius: 57px;
+  height: 48px;
+  opacity: 0.83;
+  font-size: 17px;
+  padding-left: 20px;
+  justify-content: space-between;
+  margin-left: 4%;
+}
+
+.nav:hover {
+  border: solid 1px white;
+}
+
+.holder {
+  width: 80%;
+  height: 100%;
+  font-size: 17px;
+  opacity: 0.83;
+  caret-color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  background-color: transparent;
+  border: none;
+}
+
+.holder:focus {
+  outline: none;
+}
+
+.holder::placeholder {
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.83;
+  font-size: 17px;
+}
+
+
+.icon-search {
+  width: 41px;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+.icon-search-mobile {
+  display: none;
+}
+
+.icon-search-mobile-none {
+  display: none;
+}
+
+.comboBoxGenre {
+
+  margin-top: 7%;
+  color: #b9b8b8;
+  justify-content: left;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 11%;
+  border-radius: 57px;
+  height: 48px;
+  opacity: 0.83;
+  font-size: 17px;
+  padding-left: 20px;
+
+}
+
+.comboBoxGenre:hover {
+
+  border: solid 1px white;
+  cursor: pointer;
+
+}
+
+.comboBoxGenre:focus-visible {
+
+  outline: none;
+
+}
+
+
+.optionGenre {
+
+  color: #b9b8b8;
+  background-color: #171718;
+
+}
+
+/* Estilos del contenedor del menú */
+.menu-container {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+}
+
+/* Estilos del botón hamburguesa */
+.hamburger {
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  margin-bottom: 13px
+}
+
+
+.bar {
+  height: 4px;
+  width: 100%;
+  background-color: #7B7A8B;
+  border-radius: 2px;
+}
+
+/* Estilos del menú */
+.menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  background-color: #222222ee;
+  width: 100%;
+  height: 100%;
+  padding: 30px 0;
+}
+
+.menu ul {
+  list-style: none;
+  text-align: center;
+}
+
+.menu ul li {
+  margin: 45px 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* No mostrar el menú aunque la clase 'show' este activa antes de los 600px */
+.menu.show {
+  display: none;
+}
+
+
+.title {
+  color: white;
+  margin-top: 2%;
+  margin-bottom: 4%;
+  font-size: 45px;
+}
+
+.buttonSeeTrailer {
+  margin: 10%;
+  color: white;
+  background-color: rgb(157 157 157 / 18%);
+  padding: 8.6px 20px;
+  border-radius: 32px;
+  font-size: 16px;
+  transition: all ease-in-out 0.2s;
+}
+
+.buttonSeeTrailer:hover {
+  background-color: rgba(122, 124, 125, 0.5);
+  transition: all ease-in-out 0.2s;
+}
+
+
+
+.buttonCloseTrailer {
+  cursor: pointer;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 9%;
+  top: 29%;
+  z-index: 3;
+  fill: rgba(60, 65, 67, 0.9);
+  transition: all ease-in-out 0.2s;
+
+}
+
+.buttonCloseTrailer:hover {
+
+  fill: rgba(122, 124, 125, 0.9);
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+
+}
+
+
+.reproductorContainer {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 2;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6));
+}
+
+iframe {
+  width: 45%;
+  height: 59%;
+}
+
+.section-movie-cards {
+  display: grid;
+  margin-top: 7%;
+  margin-bottom: 24%;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  grid-auto-rows: auto;
+  row-gap: 12%;
+}
+
+.section-movie-none {
+  display: none;
+}
+
+.card-movie {
+  display: flex;
+  width: 225px;
+  height: 341px;
+  text-align: center;
+  border-radius: 39px;
+  align-items: flex-end;
+  transition: all ease-in-out 0.2s;
+  cursor: pointer;
+}
+
+.card-movie:hover {
+  transform: scale(1.1);
+  transition: all ease-in-out 0.2s;
+  border: solid 2px white;
+}
+
+.movie-name {
+  display: flex;
+  color: white;
+  font-size: 20px;
+  height: 13%;
+  border-radius: 0px 0px 54px 54px;
+  width: 100%;
+  align-items: center;
+  margin-bottom: -28%;
+  justify-content: center;
+}
+
+@media (max-width: 1700px) {
+
+  .section-movie-cards {
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 14%;
+  }
+
+  .nav {
+    width: 28%;
+  }
+
+  .divDetails {
+    width: 50%;
+  }
+
+  .comboBoxGenre {
+    width: 16%;
+  }
+
+
+  .posterTitle {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 1300px) {
+
+  .section-movie-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .divDetails {
+    width: 60%;
+  }
+
+  .posterTitle {
+    font-size: 33px;
+  }
+
+  .nav {
+    margin-top: 10%;
+    width: 40%;
+  }
+
+  .comboBoxGenre {
+    margin-top: 10%;
+    width: 20%;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .nav {
+    margin-top: 15%;
+    width: 55%;
+  }
+
+  .dropdown-menu{
+    padding: 3px 0px;
+  }
+
+  .comboBoxGenre {
+    width: 24%;
+    margin-top: 15%;
+    display: none;
+  }
+
+  .nav-container {
+    align-items: flex-end;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .menu.show {
+    display: block;
+  }
+
+
+  .section-movie-cards {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5%;
+    margin-top: 17%;  
+  }
+
+  .arrowBack {
+    height: 46px;
+    width: 46px;
+    margin-left: 5%;
+    margin-top: 5%;
+  }
+
+  .arrowBackSectionMovies {
+    height: 46px;
+    width: 46px;
+  }
+
+  .divDetails {
+    width: 95%;
+  }
+
+  .posterOverview {
+    font-size: 14px;
+    margin-left: 9%;
+  }
+
+  .textGenres {
+    padding: 7.6px 18px;
+    font-size: 14px;
+  }
+
+  .buttonSeeTrailer {
+    margin: 10%;
+    font-size: 14px;
+  }
+
+  .posterTitle {
+    font-size: 30px;
+  }
+
+  .movie-name {
+    font-size: 18px;
+  }
+
+  .card-movie {
+    width: 200px;
+    height: 310px;
+
+  }
+
+  .posterReleaseDate {
+    font-size: 14px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .nav-container {
+    padding: 0 35px 0 35px;
+    gap: 22%;
+  }
+
+  .nav:hover {
+    border: none;
+  }
+
+  .icon-search-mobile {
+    display: block;
+    width: 50px;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+
+  .nav {
+    width: 0;
+    background-color: transparent;
+  }
+
+  .hamburger {
+    margin-bottom: 9px;
+  }
+  
+  .dropdown-menu{
+    padding: 2px 0px;
+  }
+
+  .dropdown-item{
+    padding: 7px 16px;
+    font-size: 14px;
+  }
+
+  .dropdown-button{
+    margin-left: 87%;
+    margin-top: 22%;
+  }
+
+  .section-movie-cards {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 2%;
+    margin-top: 25%;
+  }
+
+  .posterTitle {
+    font-size: 23px;
+  }
+
+  .posterReleaseDate {
+    font-size: 12px;
+  }
+
+  .divGenres {
+    flex-direction: column;
+  }
+
+  .textGenres {
+    text-align: center;
+    margin-top: 17%;
+  }
+
+  .posterOverview {
+    font-size: 12px;
+  }
+
+  .buttonSeeTrailer {
+    font-size: 12px;
+  }
+
+}
+
+@media (max-width: 400px) {
+
+
+  .nav-container {
+    gap: 22%;
+  }
+
+  .movie-name {
+    font-size: 15px
+  }
+
+  .section-movie-cards {
+    margin-top: 30%;
+  }
+
+  .card-movie {
+    width: 170px;
+    height: 270px;
+  }
+
+  .hamburger {
+    width: 27px;
+    height: 20px;
+  }
+
+  .dropdown-button{
+    margin-left: 35%;
+    font-size: 15px;
+  }
+
+  .dropdown-item{
+    padding: 6px 16px;
+    font-size: 13px;
+  }
+
+  .icon-search-mobile {
+    width: 42px;
+  }
+
+  .posterTitle {
+    font-size: 20px;
+  }
+
+  .textGenres {
+    font-size: 12px;
+  }
+
+}
