@@ -135,47 +135,7 @@ const View = ({ request, serieRequest, actorsRequest, loading, listGenres, listS
             resetGenresInSearchingMovies()
         }
     }
-
     const handlerEnterPress = async (e) => {
-        let keyPressed;
-    
-        // Detectar si es Android y obtener el keyCode de manera especial
-        if (/Android/i.test(navigator.userAgent)) {
-            keyPressed = e.target.value.slice(-1).charCodeAt(0); // Último carácter ingresado
-        } else {
-            keyPressed = e.key; // En dispositivos no Android, tomamos e.key normalmente
-        }
-    
-        // Validar si se presionó Enter
-        if (keyPressed === 'Enter' || keyPressed === 13) {
-
-            
-            if (userSearch === '') {
-                console.log('Campo vacío');
-            } else {
-                const callMovies = await Search(userSearch);
-    
-                if (callMovies.results.length !== 0) {
-                    setFoundMovie(await callMovies.results);
-    
-                    iconSearchMobile.classList.replace(
-                        'icon-search-mobile',
-                        'icon-search-mobile-none'
-                    );
-                } else {
-                    notyf.error('No se han encontrado resultados');
-                    goBackSectionMovies();
-                }
-    
-                resetGenresInSearchingMovies();
-                inputSearch.value = '';
-            }
-        }
-    };
-    
-
-
-  /*  const handlerEnterPress = async (e) => {
 
         if (userSearch === '') {
 
@@ -202,7 +162,7 @@ const View = ({ request, serieRequest, actorsRequest, loading, listGenres, listS
 
             }
         }
-    }*/
+    }
 
     const handlerEnterPressActor = async (e) => {
 
