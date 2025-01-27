@@ -1,5 +1,5 @@
 import Search from "./requestSearch"
-import { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { ClipLoader } from "react-spinners"
 import YouTube from "react-youtube"
 import Carousel from "./carrousel"
@@ -18,7 +18,6 @@ import GenreSeriesSelected from "./GenreSeriesSelected"
 import MostPopularSeries from "./mostPopularSeries"
 import MostPopularActors from "./MostPopularActors"
 import { useSeries } from "../seriesContext"
-
 
 const notyf = new Notyf({
     duration: 3000,
@@ -64,7 +63,7 @@ const View = ({ request, serieRequest, actorsRequest, loading, listGenres, listS
 
 
     const search = (e) => {
-
+     
         setUserSearch(e.target.value)
 
     }
@@ -137,8 +136,46 @@ const View = ({ request, serieRequest, actorsRequest, loading, listGenres, listS
         }
     }
 
-
     const handlerEnterPress = async (e) => {
+        let keyPressed;
+    
+        // Detectar si es Android y obtener el keyCode de manera especial
+        if (/Android/i.test(navigator.userAgent)) {
+            keyPressed = e.target.value.slice(-1).charCodeAt(0); // Último carácter ingresado
+        } else {
+            keyPressed = e.key; // En dispositivos no Android, tomamos e.key normalmente
+        }
+    
+        // Validar si se presionó Enter
+        if (keyPressed === 'Enter' || keyPressed === 13) {
+
+            
+            if (userSearch === '') {
+                console.log('Campo vacío');
+            } else {
+                const callMovies = await Search(userSearch);
+    
+                if (callMovies.results.length !== 0) {
+                    setFoundMovie(await callMovies.results);
+    
+                    iconSearchMobile.classList.replace(
+                        'icon-search-mobile',
+                        'icon-search-mobile-none'
+                    );
+                } else {
+                    notyf.error('No se han encontrado resultados');
+                    goBackSectionMovies();
+                }
+    
+                resetGenresInSearchingMovies();
+                inputSearch.value = '';
+            }
+        }
+    };
+    
+
+
+  /*  const handlerEnterPress = async (e) => {
 
         if (userSearch === '') {
 
@@ -165,7 +202,7 @@ const View = ({ request, serieRequest, actorsRequest, loading, listGenres, listS
 
             }
         }
-    }
+    }*/
 
     const handlerEnterPressActor = async (e) => {
 
@@ -193,6 +230,9 @@ const View = ({ request, serieRequest, actorsRequest, loading, listGenres, listS
             }
         }
     }
+
+    
+    
     const handlerEnterPressSeries = async (e) => {
 
         if (userSearch === '') {
@@ -216,6 +256,7 @@ const View = ({ request, serieRequest, actorsRequest, loading, listGenres, listS
                 inputSearch.value = ''
             }
         }
+        
     }
 
     const handlerClickMovie = (movie) => {
@@ -562,35 +603,51 @@ const View = ({ request, serieRequest, actorsRequest, loading, listGenres, listS
         }
     };
 
+
+
     return (
         <>
             {trailerController ? (
-                <>
-                    <YouTube
-                        videoId={trailer.key}
-                        className="reproductorContainer"
-                        opts={{
+    trailer?.key ? (
+        <>
+            <YouTube
+                videoId={trailer.key}
+                className="reproductorContainer"
+                opts={{
+                    width: "100%",
+                    height: "100%",
+                    playerVars: {
+                        autoplay: 1,
+                        controls: 1,
+                        cc_load_policy: 0,
+                        fs: 1,
+                        iv_load_policy: 0,
+                        modestbranding: 0,
+                        rel: 1,
+                        showinfo: 0,
+                    },
+                }}
+            />
+            <svg
+                className="buttonCloseTrailer"
+                width={32}
+                height={32}
+                onClick={toggleTrailerController}
+                xmlns="http://www.w3.org/2000/svg"
+                id="Layer_1"
+                data-name="Layer 1"
+                viewBox="0 0 24 24"
+            >
+                <path d="m15.707,9.707l-2.293,2.293,2.293,2.293c.391.391.391,1.023,0,1.414-.195.195-.451.293-.707.293s-.512-.098-.707-.293l-2.293-2.293-2.293,2.293c-.195.195-.451.293-.707.293s-.512-.098-.707-.293c-.391-.391-.391-1.023,0-1.414l2.293-2.293-2.293-2.293c-.391-.391-.391-1.023,0-1.414s1.023-.391,1.414,0l2.293,2.293,2.293-2.293c.391-.391,1.023-.391,1.414,0s.391,1.023,0,1.414Zm8.293,2.293c0,6.617-5.383,12-12,12S0,18.617,0,12,5.383,0,12,0s12,5.383,12,12Zm-2,0c0-5.514-4.486-10-10-10S2,6.486,2,12s4.486,10,10,10,10-4.486,10-10Z" />
+            </svg>
+        </>
+    ) : (
+        
+        toggleTrailerController()
+        
+    )
+) : null}
 
-                            width: "100%",
-                            height: "100%",
-                            playerVars: {
-                                autoplay: 1,
-                                controls: 1,
-                                cc_load_policy: 0,
-                                fs: 1,
-                                iv_load_policy: 0,
-                                modestbranding: 0,
-                                rel: 1,
-                                showinfo: 0,
-                            },
-                        }}
-                    />
-                    <svg className="buttonCloseTrailer" width={32} height={32} onClick={toggleTrailerController} xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" ><path d="m15.707,9.707l-2.293,2.293,2.293,2.293c.391.391.391,1.023,0,1.414-.195.195-.451.293-.707.293s-.512-.098-.707-.293l-2.293-2.293-2.293,2.293c-.195.195-.451.293-.707.293s-.512-.098-.707-.293c-.391-.391-.391-1.023,0-1.414l2.293-2.293-2.293-2.293c-.391-.391-.391-1.023,0-1.414s1.023-.391,1.414,0l2.293,2.293,2.293-2.293c.391-.391,1.023-.391,1.414,0s.391,1.023,0,1.414Zm8.293,2.293c0,6.617-5.383,12-12,12S0,18.617,0,12,5.383,0,12,0s12,5.383,12,12Zm-2,0c0-5.514-4.486-10-10-10S2,6.486,2,12s4.486,10,10,10,10-4.486,10-10Z" /></svg>
-
-                </>
-            ) :
-                null
-            }
 
             {!movieSelected.id && !serieSelected.id && request ? (
 

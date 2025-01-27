@@ -33,7 +33,7 @@ const HeadSection = ({ typeOfSearch, setTypeOfSearch, notyf, handleSearchIconCli
                 <svg viewBox="0 0 24 24" onClick={handleSearchIconClick} className="icon-search-mobile" id="icon-search-mobile" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#9190a0"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.1" d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" fill="#9190a0"></path> <path d="M15 15L21 21" stroke="#9190a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#9190a0" stroke-width="2"></path> </g></svg>
 
 
-                <div className="nav">
+                <div className={foundMovies.length === 0 && foundSeries.length === 0 && MoviesOfActorSelected.length === 0 ?  "nav": "nav nav-mobile-found-movies"}>
 
 
                     {MoviesOfActorSelected.length === 0 && foundMovies.length === 0 && foundSeries.length === 0 && (
@@ -147,6 +147,7 @@ const HeadSection = ({ typeOfSearch, setTypeOfSearch, notyf, handleSearchIconCli
                     <svg className="arrowBackSectionMovies" onClick={goBackSectionMovies} xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="50" height="50"><path className="arrowbackHover" onClick={goBackSectionMovies} d="M13.775,18.707,8.482,13.414a2,2,0,0,1,0-2.828l5.293-5.293,1.414,1.414L9.9,12l5.293,5.293Z" /></svg>
 
                 ) :
+
 
                     <svg className="arrowBackSectionMovies" onClick={goBackSectionMovies} xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="50" height="50"><path className="arrowbackHover" onClick={goBackSectionMovies} d="M13.775,18.707,8.482,13.414a2,2,0,0,1,0-2.828l5.293-5.293,1.414,1.414L9.9,12l5.293,5.293Z" /></svg>
                 }
